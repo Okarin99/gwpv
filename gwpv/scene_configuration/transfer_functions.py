@@ -164,12 +164,12 @@ def configure_custom_peaks_transfer_function(transfer_fctn, opacity_fctn, scalar
             inverse_peaks[i]["Position"] *= -1
         peaks = [*inverse_peaks, *peaks]
         tf_decay = [*[-d for d in tf_decay[::-1]], *tf_decay]
-    
-    minColorPos = peaks[0]
-    maxColorPos = peaks[-1]
+
+    minColorPos = peaks[0]["Position"]
+    maxColorPos = peaks[-1]["Position"]
     if "ColorRange" in tf_config:
-        minColorPos = tf_config["ColorRange"][0]
-        maxColorPos = tf_config["ColorRange"][1]
+        minColorPos = tf_config["ColorRange"][0]["Position"]
+        maxColorPos = tf_config["ColorRange"][1]["Position"]
 
     transfer_fctn.RescaleTransferFunction(minColorPos, maxColorPos)
     scalarBarTransfer_fctn.RescaleTransferFunction(minColorPos, maxColorPos)
